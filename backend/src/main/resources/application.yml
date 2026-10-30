@@ -1,0 +1,65 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: grocery-backend
+
+  data:
+    mongodb:
+      uri: ${MONGODB_URI:mongodb+srv://bojjaganivivek5:manager@cluster0.jnpltaj.mongodb.net/onlinebazer?retryWrites=true&w=majority}  
+      auto-index-creation: true
+
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      timeout: 2000ms
+
+  cache:
+    type: none
+
+  mail:
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:smuneer3779@gmail.com}
+    password: ${MAIL_PASSWORD:rbrc jgyw pyyd fegv}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+
+app:
+  mail:
+    from: ${MAIL_FROM:smuneer3779@gmail.com}
+  notifications:
+    email:
+      enabled: ${EMAIL_NOTIFICATIONS_ENABLED:true}
+      from: ${MAIL_FROM:smuneer3779@gmail.com}
+  jwt:
+    secret: ${JWT_SECRET:404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970}
+    expiration-ms: 604800000 # 7 days
+  razorpay:
+    key-id: ${RAZORPAY_KEY_ID:rzp_test_ThlaM0mgWVo6g0}
+    key-secret: ${RAZORPAY_KEY_SECRET:dqSKmUpZHBZ1KNBzFJ0V9iIq}
+    webhook-secret: ${RAZORPAY_WEBHOOK_SECRET:SmartCartWebhook@2026#KLU}
+    currency: INR
+    mock-mode: false
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
+
+logging:
+  level:
+    root: INFO
+    com.freshmart.grocery: DEBUG
+    org.springframework.data.mongodb: INFO
