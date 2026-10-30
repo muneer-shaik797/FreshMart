@@ -1,6 +1,8 @@
 import { Client } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
 
+const API_BASE = import.meta.env.VITE_API_URL || '';
+
 class WebSocketService {
   constructor() {
     this.client = null;
@@ -14,8 +16,10 @@ class WebSocketService {
       return;
     }
 
+    const wsUrl = API_BASE ? `${API_BASE}/ws` : '/ws';
+
     this.client = new Client({
-      webSocketFactory: () => new SockJS('/ws'),
+      webSocketFactory: () => new SockJS(wsUrl),
       debug: (str) => {
         // debug logging can be enabled when needed
       },
